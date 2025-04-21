@@ -9,10 +9,10 @@ public class HomePageTests : PageTest
 {
     [Fact]
     public async Task CheckWelcomeTitleIsVisible()
-{
-    var page = new HomePage(Page);
-    await page.GotoAsync();
+    {
+        var page = new HomePage(Page);
+        await page.GotoAsync();
 
-    Assert.True(await page.CheckWelcomeHeadingIsVisible());
+        Assert.True(await page.CheckWelcomeHeadingIsVisible());
     }
 }
