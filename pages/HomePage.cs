@@ -11,7 +11,7 @@ public class HomePage
     _page = page;
   }
 
-  private ILocator WelcomeHeading => _page.Locator("//h1[text()='Welcome to the technology demo of accessibility online']");
+  private ILocator WelcomeHeading => _page.Locator("//h1[contains(text(),\"  We're on a mission. Take Accessibility Mainstream.\")]");
 
   private ILocator RegisterLink => _page.Locator("//a[text()='Register']");
 
@@ -31,7 +31,12 @@ public class HomePage
 
   public async Task GotoAsync()
   {
-    await _page.GotoAsync("https://accessibility.online/");
+    await _page.GotoAsync("http://factory.accessibility.online/");
+  }
+
+  public async Task ClickRegisterLink()
+  {
+    await RegisterLink.ClickAsync();
   }
 
   public async Task<bool> CheckWelcomeHeadingIsVisible()
