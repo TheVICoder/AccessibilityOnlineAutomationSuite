@@ -25,5 +25,16 @@ public class HomePageTests : PageTest
         await _homePage.ClickRegisterLink();
 
         Assert.True(await _registrationPage.CheckCreateAccountHeadingIsVisible());
+        Assert.True(await _registrationPage.CheckAccountDetailsSubHeadingIsVisible());
+
+        await _registrationPage.FillUsernameField();
+        await _registrationPage.FillEmailField();
+        await _registrationPage.FillPasswordField();
+        await _registrationPage.FillConfirmPasswordField();
+        await _registrationPage.ClickFirstNextButton();
+
+        Assert.True(await _registrationPage.CheckAboutYouSubHeadingIsVisible());
     }
+
+
 }

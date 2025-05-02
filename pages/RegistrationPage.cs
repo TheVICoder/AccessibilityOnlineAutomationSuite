@@ -1,3 +1,4 @@
+using System.Security;
 using Microsoft.Playwright;
 
 namespace AOATs;
@@ -12,6 +13,11 @@ public class RegistrationPage
   }
 
   private ILocator CreateAccountHeading => _page.Locator("//h1[text()='Create your account']");
+
+  private ILocator AccountDetailsSubHeading => _page.Locator("//h2[text()='Account Details']");
+
+  private ILocator AboutYouSubHeading => _page.Locator("//h2[text()='About You']");
+  
 
   private ILocator RegisterLink => _page.Locator("//a[text()='Register']");
 
@@ -31,14 +37,49 @@ public class RegistrationPage
 
   private ILocator ConfirmPasswordInputField => _page.Locator("//input[@id='confirmPassword']");
 
-  private ILocator NextStepButton => _page.Locator("//button[@id='submitStep1']");
+  private ILocator NextStep1Button => _page.Locator("//button[@id='submitStep1']");
   public async Task GotoAsync()
   {
     await _page.GotoAsync("https://accessibility.online/account/register");
   }
 
+    public async Task FillUsernameField()
+    {
+      await UsernameInputField.FillAsync("Smurphy");
+    }
+
+    public async Task FillEmailField()
+    {
+      await EmailInputField.FillAsync("josh.murphy1999@icloud.com");
+    }
+
+  public async Task FillPasswordField()
+  {
+    await PasswordInputField.FillAsync("Testpass4");
+  }
+
+  public async Task FillConfirmPasswordField()
+  {
+    await ConfirmPasswordInputField.FillAsync("Testpass4");
+  }
+
+  public async Task ClickFirstNextButton()
+  {
+    await NextStep1Button.ClickAsync();
+  }
+
   public async Task<bool> CheckCreateAccountHeadingIsVisible()
   {
     return await CreateAccountHeading.IsVisibleAsync();
+  }
+
+  public async Task<bool> CheckAccountDetailsSubHeadingIsVisible()
+  {
+    return await AccountDetailsSubHeading.IsVisibleAsync();
+  }
+
+  public async Task<bool> CheckAboutYouSubHeadingIsVisible()
+  {
+    return await AboutYouSubHeading.IsVisibleAsync();
   }
 }
