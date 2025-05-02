@@ -1,0 +1,7 @@
+# Ignore all bin folders
+bin/
+**/bin/
+
+# Ignore all obj folders
+obj/
+**/obj/ 
